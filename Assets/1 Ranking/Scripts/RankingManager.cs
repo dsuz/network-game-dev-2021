@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using NCMB;         // NCMB を使うため
@@ -16,14 +14,27 @@ public class RankingManager : MonoBehaviour
     [SerializeField] InputField m_nameInput;
     /// <summary>名前の登録を行うためのオブジェクトが配置されたパネル</summary>
     [SerializeField] RectTransform m_entryPanel;
+    /// <summary>最初にrankingを閉じさせない秒数</summary>
+    [SerializeField] float m_gracePeriod = 10f;
     /// <summary>ランキング情報の配列</summary>
     List<NCMBObject> m_ranking;
     /// <summary>今回のスコア</summary>
     int m_score;
+    float m_timer;
+    /// <summary>画面を閉じてもよいか</summary>
+    bool m_closable = false;
 
-    void Start()
+    void Update()
     {
-        
+        if (!m_closable)
+        {
+            m_timer += Time.deltaTime;
+
+            if (m_timer > m_gracePeriod)
+            {
+                m_closable = true;
+            }
+        }
     }
 
     /// <summary>
@@ -31,7 +42,7 @@ public class RankingManager : MonoBehaviour
     /// </summary>
     public void CloseRanking()
     {
-        if (!m_entryPanel.gameObject.activeSelf)    // エントリーが表示されている間は閉じさせない
+        if (m_closable && !m_entryPanel.gameObject.activeSelf)    // エントリーが表示されている間は閉じさせない
         {
             Destroy(this.gameObject);
         }
@@ -39,7 +50,7 @@ public class RankingManager : MonoBehaviour
 
     /// <summary>
     /// ランキングを取得する
-    /// ランキングをサーバーから取ってきて、ランクインしてたら名前を入力する画面を表示する
+    /// ランキングをサーバーから取ってきて、10 位以内に入っていたら名前を入力する画面を表示する
     /// </summary>
     /// <param name="score">今回のスコア。0 の場合はランキング入力画面は出ない</param>
     public void GetRanking(int score)

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// 隕石を生成するコンポーネント
@@ -25,7 +23,6 @@ public class CometGenerator : MonoBehaviour
     void Update()
     {
         if (!m_isInGame) return;    // ゲーム中でない場合は何もしない
-
         m_timer += Time.deltaTime;  // タイマー加算
 
         if (m_timer > m_interval)   // 間隔を越えたら
