@@ -61,7 +61,7 @@ public class RankingManager : MonoBehaviour
         query.OrderByDescending("Score");
         query.Limit = 10;
 
-        // 検索する https://mbaas.nifcloud.com/assets/sdk_doc/unity_3.2.3/Help/classNCMB_1_1NCMBQuery.html#a6210c11562957ea3fb6a8a417939c7b5
+        // 検索する https://mbaas.nifcloud.com/assets/sdk_doc/unity/Help/classNCMB_1_1NCMBQuery.html#a6210c11562957ea3fb6a8a417939c7b5
         query.FindAsync((List<NCMBObject> objList, NCMBException e) =>
         {
             if (e != null)
@@ -122,7 +122,7 @@ public class RankingManager : MonoBehaviour
         obj["Name"] = m_nameInput.text;
         obj["Score"] = m_score;
         
-        // データを保存する https://mbaas.nifcloud.com/assets/sdk_doc/unity_3.2.3/Help/classNCMB_1_1NCMBObject.html#a2e429d428a70cb7ef9ad6230b0cd2837
+        // データを保存する https://mbaas.nifcloud.com/assets/sdk_doc/unity/Help/classNCMB_1_1NCMBObject.html#a2e429d428a70cb7ef9ad6230b0cd2837
         obj.SaveAsync((NCMBException e) =>
         {
             if (e != null)
