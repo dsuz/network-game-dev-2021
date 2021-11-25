@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 // Photon 用の名前空間を参照する
 using ExitGames.Client.Photon;
@@ -12,6 +11,7 @@ using Photon.Pun.UtilityScripts;    // TurnManager のため
 /// </summary>
 public class NetworkGameManagerTurnBased : MonoBehaviourPunCallbacks // Photon Realtime 用のクラスを継承する
 {
+    /// <summary>最大プレイ可能人数</summary>
     [SerializeField] int _maxPlayerCount = 2;
     PunTurnManager _turnManager = default;
 
@@ -87,13 +87,16 @@ public class NetworkGameManagerTurnBased : MonoBehaviourPunCallbacks // Photon R
         }
     }
 
+    /// <summary>
+    /// PunTurnManager をセットアップする
+    /// </summary>
     void SetupTurnManager()
     {
         Debug.Log("Setup TurnManager");
 
         // 同じオブジェクトに追加している PunTurnManager を取得し、ターン管理のイベントを Listen するよう設定する
         _turnManager = GetComponent<PunTurnManager>();
-        _turnManager.enabled = true; // 動的に AddComponent してもよい
+        _turnManager.enabled = true; // AddComponent をアタッチして無効にしているが、動的に AddComponent してもよい
         _turnManager.TurnManagerListener = GetComponent<TicTacToeManager>();
     }
 
