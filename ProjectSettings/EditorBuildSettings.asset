@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/3 TurnBased/TicTacToe.unity
     guid: b1ef1019696723b4bae335484a831465
+  - enabled: 1
+    path: Assets/AssetStoreTools/Test/New Scene.unity
+    guid: 6a715cb5c8b947b4ba6cb357d9b6f07d
   m_configObjects: {}
